@@ -1,0 +1,13 @@
+{
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
+  "[terraform-vars]": {
+    "editor.tabSize": 2
+  },
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  }
+}
