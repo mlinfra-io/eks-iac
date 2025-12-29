@@ -1,12 +1,23 @@
 {
   "[terraform-vars]": {
-    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.defaultFormatter": "hashicorp.terraform"
   },
   "[terraform]": {
-    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.defaultFormatter": "hashicorp.terraform"
   },
   "editor.formatOnSave": true,
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
-  "files.trimFinalNewlines": true
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "files.exclude": {
+    "**/.terragrunt-cache": true,
+    "**/terraform.tfstate*": true
+  },
+  "search.exclude": {
+    "**/.terragrunt-cache": true,
+    "**/terraform.tfstate*": true
+  },
+  "breadcrumbs.enabled": true
 }
