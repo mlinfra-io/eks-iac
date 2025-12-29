@@ -18,9 +18,9 @@ repos:
       - id: check-added-large-files
         args: ["--maxkb=5120"]
       - id: check-json
-        exclude: "^.vscode/*"
+        exclude: "^.vscode"
       - id: pretty-format-json
-        exclude: "^.vscode/*"
+        exclude: "^.vscode"
         args: ["--autofix"]
       - id: mixed-line-ending
       - id: check-symlinks
