@@ -22,17 +22,15 @@ module "vpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true
 
-  enable_flow_log = var.enable_flow_log
-
   manage_default_network_acl = true
 
   tags = var.tags
 }
 
-module "flow_logs_bucket" {
+module "vpc_flow_logs_bucket" {
   source = "../s3"
 
-  name          = "vpc-flow-logs"
+  name          = "mlinfra-${var.name}-flow-logs"
   region        = var.region
   force_destroy = true
 
@@ -50,7 +48,7 @@ module "vpc_flow_logs" {
   vpc_id = module.vpc.vpc_id
 
   log_destination_type = "s3"
-  log_destination      = module.flow_logs_bucket.s3_bucket_arn
+  log_destination      = module.vpc_flow_logs_bucket.s3_bucket_arn
 
   tags = var.tags
 }

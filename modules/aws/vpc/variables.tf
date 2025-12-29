@@ -54,11 +54,6 @@ variable "one_nat_gateway_per_az" {
   default     = false
 }
 
-variable "enable_flow_log" {
-  type    = bool
-  default = false
-}
-
 variable "tags" {
   type    = map(string)
   default = {}
