@@ -4,6 +4,8 @@ repos:
     hooks:
       - id: shellcheck
       - id: tflint
+        args:
+          - "--config=__GIT_ROOT__/.tflint.hcl"
       - id: terraform-fmt
       - id: terraform-validate
       - id: terragrunt-hcl-fmt
