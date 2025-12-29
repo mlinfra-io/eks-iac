@@ -6,6 +6,7 @@
     "amazonwebservices.aws-toolkit-vscode",
     "googlecloudtools.cloudcode",
     "redhat.vscode-yaml",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig"
   ]
 }

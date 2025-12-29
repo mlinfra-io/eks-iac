@@ -20,6 +20,7 @@ repos:
       - id: check-json
         exclude: "^.vscode/*"
       - id: pretty-format-json
+        exclude: "^.vscode/*"
         args: ["--autofix"]
       - id: mixed-line-ending
       - id: check-symlinks

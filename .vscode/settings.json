@@ -1,17 +1,12 @@
 {
-  "[markdown]": {
-    "editor.formatOnSave": false
-  },
   "[terraform-vars]": {
-    "editor.tabSize": 2
+    "editor.defaultFormatter": "hashicorp.terraform",
   },
   "[terraform]": {
     "editor.defaultFormatter": "hashicorp.terraform",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2
   },
   "editor.formatOnSave": true,
   "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true,
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true
 }
