@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "hashicorp.terraform",
+    "gruntwork-io.terragrunt",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "amazonwebservices.aws-toolkit-vscode",
+    "googlecloudtools.cloudcode",
+    "redhat.vscode-yaml",
+    "esbenp.prettier-vscode"
+  ]
+}
