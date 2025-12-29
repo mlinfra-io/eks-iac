@@ -64,3 +64,13 @@ variable "enable_nat_gateway" {
   description = "Enable NAT Gateway, this is set as false by default in https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest?tab=inputs"
   default     = true
 }
+
+variable "public_subnet_tags" {
+  type    = map(string)
+  default = {}
+}
+
+variable "private_subnet_tags" {
+  type    = map(string)
+  default = {}
+}

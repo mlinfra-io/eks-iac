@@ -19,10 +19,12 @@ module "vpc" {
   single_nat_gateway     = var.one_nat_gateway_per_az ? false : true
   one_nat_gateway_per_az = var.one_nat_gateway_per_az
 
-  enable_dns_hostnames = true
-  enable_dns_support   = true
-
+  enable_dns_hostnames       = true
+  enable_dns_support         = true
   manage_default_network_acl = true
+
+  public_subnet_tags  = var.public_subnet_tags
+  private_subnet_tags = var.private_subnet_tags
 
   tags = var.tags
 }

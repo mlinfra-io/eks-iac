@@ -34,6 +34,13 @@ EOF
 inputs = {
   name   = local.name
   region = include.env.locals.region
+  public_subnet_tags = {
+    "kubernetes.io/role/elb" = 1
+  }
+  private_subnet_tags = {
+    "kubernetes.io/role/internal-elb" = 1
+    "karpenter.sh/discovery"          = "mlinfra-eks-cluster"
+  }
 }
 
 terraform {
