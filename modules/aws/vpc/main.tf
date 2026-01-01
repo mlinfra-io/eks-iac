@@ -73,15 +73,28 @@ module "vpc_endpoints" {
 
   endpoints = {
     s3 = {
-      service             = "s3"
+      service         = "s3"
+      service_type    = "Gateway"
+      route_table_ids = module.vpc.private_route_table_ids
+      tags            = { Name = "s3-vpc-endpoint" }
+    },
+    ecr_api = {
+      service             = "ecr.api"
       private_dns_enabled = true
-      dns_options = {
-        private_dns_only_for_inbound_resolver_endpoint = false
-      }
-      tags = { Name = "s3-vpc-endpoint" }
+      subnet_ids          = module.vpc.private_subnets
     },
     ecr_dkr = {
       service             = "ecr.dkr"
+      private_dns_enabled = true
+      subnet_ids          = module.vpc.private_subnets
+    },
+    sts = {
+      service             = "sts"
+      private_dns_enabled = true
+      subnet_ids          = module.vpc.private_subnets
+    },
+    logs = {
+      service             = "logs"
       private_dns_enabled = true
       subnet_ids          = module.vpc.private_subnets
     },
