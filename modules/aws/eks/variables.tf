@@ -85,18 +85,18 @@ variable "coredns_addon" {
   }
 }
 
-# variable "ebs_csi_driver_addon" {
-#   type = object({
-#     most_recent                 = bool
-#     resolve_conflicts_on_create = string
-#     resolve_conflicts_on_update = string
-#   })
-#   default = {
-#     most_recent                 = true
-#     resolve_conflicts_on_create = "OVERWRITE"
-#     resolve_conflicts_on_update = "PRESERVE"
-#   }
-# }
+variable "ebs_csi_driver_addon" {
+  type = object({
+    most_recent                 = bool
+    resolve_conflicts_on_create = string
+    resolve_conflicts_on_update = string
+  })
+  default = {
+    most_recent                 = true
+    resolve_conflicts_on_create = "OVERWRITE"
+    resolve_conflicts_on_update = "PRESERVE"
+  }
+}
 
 # variable "ebs_csi_driver_addon_configuration_values" {
 #   type        = map(any)

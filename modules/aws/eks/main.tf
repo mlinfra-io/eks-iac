@@ -74,3 +74,5 @@ module "eks" {
   enabled_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
   tags              = var.tags
 }
+
+# create aws eks pod identity association resource
