@@ -11,7 +11,7 @@ module "eks_kms_key" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 21.10.0"
+  version = "~> 21.12.0"
 
   name               = var.cluster_name
   kubernetes_version = var.k8s_version
