@@ -58,7 +58,7 @@ module "eks" {
       iam_role_use_name_prefix = false
       selectors = [
         {
-          namespace = "karpenter-system"
+          namespace = "kube-system"
           labels = {
             "app.kubernetes.io/name" = "karpenter"
           }
