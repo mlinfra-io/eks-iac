@@ -39,6 +39,16 @@ locals {
     #   resolve_conflicts_on_update = var.ebs_csi_driver_addon.resolve_conflicts_on_update
     #   # configuration_values        = jsonencode(var.ebs_csi_driver_addon_configuration_values)
     # }
+    # kube-state-metrics = {
+    #   # most_recent                 = true
+    #   resolve_conflicts_on_create = "OVERWRITE"
+    #   resolve_conflicts_on_update = "PRESERVE"
+    # }
+    # metrics-server = {
+    #   # most_recent                 = true
+    #   resolve_conflicts_on_create = "OVERWRITE"
+    #   resolve_conflicts_on_update = "PRESERVE"
+    # }
   }
 }
 
