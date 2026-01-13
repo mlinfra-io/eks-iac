@@ -2,7 +2,9 @@ module "eks_karpenter" {
   source  = "terraform-aws-modules/eks/aws//modules/karpenter"
   version = "~> 21.12.0"
 
-  cluster_name = var.cluster_name
+  # we are using module.eks.cluster_name here instead of var.cluster_name as
+  # we want the cluster to be created before the pod identity association
+  cluster_name = module.eks.cluster_name
 
   # Name needs to match role name passed to the EC2NodeClass
   node_iam_role_use_name_prefix   = false
