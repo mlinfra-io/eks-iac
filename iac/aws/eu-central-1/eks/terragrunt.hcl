@@ -33,6 +33,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "${include.root.locals.aws_provider_version}"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "${include.root.locals.helm_provider_version}"
+    }
   }
 }
 provider "aws" {
