@@ -1,8 +1,9 @@
 locals {
-  aws_provider_version = "~> 6.28.0"
-  terraform_version    = ">= 1.14.0"
-  region               = "eu-central-1"
-  state_bucket_name    = "mlinfra-prod-eks-iac"
+  aws_provider_version  = "~> 6.28.0"
+  helm_provider_version = "~> 3.1.1"
+  terraform_version     = ">= 1.14.0"
+  region                = "eu-central-1"
+  state_bucket_name     = "mlinfra-prod-eks-iac"
 }
 
 generate "provider" {
