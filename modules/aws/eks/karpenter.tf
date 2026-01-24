@@ -34,11 +34,13 @@ module "karpenter_dependencies" {
 
   # Name needs to match role name passed to the EC2NodeClass
   node_iam_role_use_name_prefix   = false
-  node_iam_role_name              = module.eks.cluster_name
+  node_iam_role_name              = "${module.eks.cluster_name}-karpenter-node"
+  node_iam_role_attach_cni_policy = true
   create_pod_identity_association = false
 
   # Used to attach additional IAM policies to the Karpenter node IAM role
   node_iam_role_additional_policies = {
+    AmazonEKSWorkerNodePolicy    = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
   }
   iam_role_source_assume_policy_documents = [
