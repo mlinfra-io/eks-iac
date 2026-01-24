@@ -37,6 +37,10 @@ terraform {
       source  = "hashicorp/helm"
       version = "${include.root.locals.helm_provider_version}"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "${include.root.locals.kubernetes_provider_version}"
+    }
   }
 }
 provider "aws" {

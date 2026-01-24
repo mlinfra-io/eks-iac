@@ -62,13 +62,39 @@ resource "helm_release" "karpenter" {
     }, {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = module.karpenter_dependencies.iam_role_arn
-    # }, {
-    # name  = "dnsPolicy"
-    # value = "Default"
     }
   ]
 
   depends_on = [
     module.karpenter_dependencies
+  ]
+}
+
+data "http" "karpenter_manifests" {
+  for_each = toset([
+    "nodeclass.yml",
+    "nodepool.yml"
+  ])
+
+  url = "https://raw.githubusercontent.com/mlinfra-io/eks-resources/main/hub/karpenter/manifests/${each.value}"
+}
+
+resource "kubernetes_manifest" "karpenter_ops_node_resources" {
+  for_each = data.http.karpenter_manifests
+
+  manifest = yamldecode(each.value.response_body)
+
+  computed_fields = [
+    "metadata.labels",
+    "metadata.annotations",
+    "metadata.finalizers",
+    "metadata.generation",
+    "metadata.resourceVersion",
+    "metadata.uid",
+    "status"
+  ]
+
+  depends_on = [
+    helm_release.karpenter
   ]
 }
