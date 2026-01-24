@@ -65,19 +65,6 @@ module "eks" {
         }
       ]
     }
-    argocd = {
-      name                     = "argocd"
-      iam_role_name            = "${var.cluster_name}-fg-argocd"
-      iam_role_use_name_prefix = false
-      selectors = [
-        {
-          namespace = "argocd"
-          labels = {
-            "app.kubernetes.io/name" = "argocd"
-          }
-        }
-      ]
-    }
   }
 
   node_security_group_tags = merge(var.tags, {
