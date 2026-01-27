@@ -74,8 +74,8 @@ resource "helm_release" "karpenter" {
 
 data "http" "karpenter_manifests" {
   for_each = toset([
-    "nodeclass.yml",
-    "nodepool.yml"
+    "nodeclass.yaml",
+    "nodepool.yaml"
   ])
 
   url = "https://raw.githubusercontent.com/mlinfra-io/eks-resources/main/hub/karpenter/manifests/${each.value}"
