@@ -11,7 +11,7 @@ module "eks_kms_key" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 21.12.0"
+  version = "~> 21.15.1"
 
   name               = var.cluster_name
   kubernetes_version = var.k8s_version
@@ -74,5 +74,3 @@ module "eks" {
   enabled_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
   tags              = var.tags
 }
-
-# create aws eks pod identity association resource

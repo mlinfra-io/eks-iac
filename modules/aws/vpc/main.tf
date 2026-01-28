@@ -1,6 +1,6 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 6.5.0"
+  version = "~> 6.6.0"
 
   name = var.name
   cidr = var.cidr_block
@@ -23,8 +23,9 @@ module "vpc" {
   enable_dns_support         = true
   manage_default_network_acl = true
 
-  public_subnet_tags  = var.public_subnet_tags
-  private_subnet_tags = var.private_subnet_tags
+  public_subnet_tags          = var.public_subnet_tags
+  private_subnet_tags         = var.private_subnet_tags
+  default_security_group_tags = var.default_security_group_tags
 
   tags = var.tags
 }
