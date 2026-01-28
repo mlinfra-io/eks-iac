@@ -19,7 +19,7 @@ dependency "vpc" {
 }
 
 locals {
-
+  cluster_name = "mlinfra-eks-cluster"
 }
 
 generate "provider_aws" {
@@ -46,11 +46,34 @@ terraform {
 provider "aws" {
   region = "${include.env.locals.region}"
 }
+
+provider "kubernetes" {
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    command     = "aws"
+    args = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
+  }
+}
+
+provider "helm" {
+  kubernetes = {
+    host                   = module.eks.cluster_endpoint
+    cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+    exec = {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      command     = "aws"
+      args = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
+    }
+  }
+}
 EOF
 }
 
 inputs = {
-  cluster_name = "mlinfra-eks-cluster"
+  cluster_name = local.cluster_name
+  k8s_version  = "1.35"
   region       = include.env.locals.region
   vpc_id       = dependency.vpc.outputs.vpc_id
   subnet_ids   = dependency.vpc.outputs.vpc_private_subnets_ids
