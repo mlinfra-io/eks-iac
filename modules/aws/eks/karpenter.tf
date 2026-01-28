@@ -78,7 +78,12 @@ data "http" "karpenter_manifests" {
     "nodepool.yaml"
   ])
 
-  url = "https://raw.githubusercontent.com/mlinfra-io/eks-resources/main/hub/karpenter/manifests/${each.value}"
+  url = "https://raw.githubusercontent.com/mlinfra-io/eks-resources/refs/heads/main/hub/projects/karpenter/manifests/${each.value}"
+
+  depends_on = [
+    module.eks,
+    helm_release.karpenter
+  ]
 }
 
 resource "kubernetes_manifest" "karpenter_ops_node_resources" {
@@ -97,6 +102,7 @@ resource "kubernetes_manifest" "karpenter_ops_node_resources" {
   ]
 
   depends_on = [
+    module.eks,
     helm_release.karpenter
   ]
 }

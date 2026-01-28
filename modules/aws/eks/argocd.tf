@@ -12,6 +12,8 @@ resource "helm_release" "argocd" {
   values           = [data.http.argocd_config.response_body]
 
   depends_on = [
+    module.eks,
+    helm_release.karpenter,
     kubernetes_manifest.karpenter_ops_node_resources
   ]
 }
