@@ -20,6 +20,24 @@ module "aws_vpc_cni_ipv4_pod_identity" {
   tags = var.tags
 }
 
+module "aws_lb_controller_pod_identity" {
+  source  = "terraform-aws-modules/eks-pod-identity/aws"
+  version = "~> 2.6.0"
+
+  name                            = "aws-lbc"
+  attach_aws_lb_controller_policy = true
+
+  associations = {
+    this = {
+      cluster_name    = module.eks.cluster_name
+      namespace       = "kube-system"
+      service_account = "aws-load-balancer-controller"
+    }
+  }
+
+  tags = var.tags
+}
+
 # module "aws_ebs_csi_pod_identity" {
 #   source  = "terraform-aws-modules/eks-pod-identity/aws"
 #   version = "~> 2.6.0"

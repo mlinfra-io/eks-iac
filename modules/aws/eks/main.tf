@@ -65,6 +65,19 @@ module "eks" {
         }
       ]
     }
+    aws-load-balancer-controller = {
+      name                     = "aws-load-balancer-controller"
+      iam_role_name            = "${var.cluster_name}-fg-aws-load-balancer-controller"
+      iam_role_use_name_prefix = false
+      selectors = [
+        {
+          namespace = "kube-system"
+          labels = {
+            "app.kubernetes.io/name" = "aws-load-balancer-controller"
+          }
+        }
+      ]
+    }
   }
 
   node_security_group_tags = merge(var.tags, {
