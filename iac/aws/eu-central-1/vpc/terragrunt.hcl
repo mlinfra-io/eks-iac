@@ -41,9 +41,6 @@ inputs = {
     "kubernetes.io/role/internal-elb" = 1
     "karpenter.sh/discovery"          = "mlinfra-eks-cluster"
   }
-  default_security_group_tags = {
-    "kubernetes.io/cluster/mlinfra-eks-cluster" = "owned"
-  }
 }
 
 terraform {

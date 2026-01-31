@@ -80,8 +80,13 @@ module "eks" {
     }
   }
 
+  security_group_tags = merge(var.tags, {
+    "kubernetes.io/cluster/${var.cluster_name}" = "owned"
+  })
+
   node_security_group_tags = merge(var.tags, {
-    "karpenter.sh/discovery" = var.cluster_name
+    "karpenter.sh/discovery"                    = var.cluster_name
+    "kubernetes.io/cluster/${var.cluster_name}" = "owned"
   })
 
   enabled_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]

@@ -14,7 +14,7 @@ resource "helm_release" "argocd" {
   depends_on = [
     module.eks,
     helm_release.karpenter,
-    kubernetes_manifest.karpenter_ops_node_resources
+    # kubernetes_manifest.karpenter_ops_node_resources
   ]
 }
 
