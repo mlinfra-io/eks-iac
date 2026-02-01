@@ -70,6 +70,12 @@ module "vpc_endpoints" {
       description = "HTTPS from VPC"
       cidr_blocks = [module.vpc.vpc_cidr_block]
     }
+    egress = {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
   }
 
   endpoints = {
@@ -79,6 +85,11 @@ module "vpc_endpoints" {
       route_table_ids = module.vpc.private_route_table_ids
       tags            = { Name = "s3-vpc-endpoint" }
     },
+    ec2 = {
+      service             = "ec2"
+      private_dns_enabled = true
+      subnet_ids          = module.vpc.private_subnets
+    },
     ecr_api = {
       service             = "ecr.api"
       private_dns_enabled = true
@@ -86,6 +97,11 @@ module "vpc_endpoints" {
     },
     ecr_dkr = {
       service             = "ecr.dkr"
+      private_dns_enabled = true
+      subnet_ids          = module.vpc.private_subnets
+    },
+    elasticloadbalancing = {
+      service             = "elasticloadbalancing"
       private_dns_enabled = true
       subnet_ids          = module.vpc.private_subnets
     },
