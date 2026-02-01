@@ -85,18 +85,18 @@ variable "coredns_addon" {
   }
 }
 
-variable "ebs_csi_driver_addon" {
-  type = object({
-    most_recent                 = bool
-    resolve_conflicts_on_create = string
-    resolve_conflicts_on_update = string
-  })
-  default = {
-    most_recent                 = true
-    resolve_conflicts_on_create = "OVERWRITE"
-    resolve_conflicts_on_update = "PRESERVE"
-  }
-}
+# variable "ebs_csi_driver_addon" {
+#   type = object({
+#     most_recent                 = bool
+#     resolve_conflicts_on_create = string
+#     resolve_conflicts_on_update = string
+#   })
+#   default = {
+#     most_recent                 = true
+#     resolve_conflicts_on_create = "OVERWRITE"
+#     resolve_conflicts_on_update = "PRESERVE"
+#   }
+# }
 
 # variable "ebs_csi_driver_addon_configuration_values" {
 #   type        = map(any)
@@ -142,12 +142,14 @@ variable "cluster_security_group_additional_rules" {
     source_node_security_group = bool
   }))
   default = {
-    egress_nodes_ephemeral_ports_tcp = {
-      description                = "To ports 1025-65535"
-      protocol                   = "tcp"
-      from_port                  = 1025
-      to_port                    = 65535
+    egress_all = {
+      description                = "Node all egress"
+      protocol                   = "-1"
+      from_port                  = 0
+      to_port                    = 0
       type                       = "egress"
+      cidr_blocks                = ["0.0.0.0/0"]
+      ipv6_cidr_blocks           = ["::/0"]
       source_node_security_group = true
     }
   }
