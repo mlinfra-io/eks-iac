@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "karpenter_controller_assume_role_policy" {
 
 module "karpenter_dependencies" {
   source  = "terraform-aws-modules/eks/aws//modules/karpenter"
-  version = "~> 21.15.1"
+  version = "~> 21.25.0"
 
   # we are using module.eks.cluster_name here instead of var.cluster_name as
   # we want the cluster to be created before the pod identity association
@@ -53,7 +53,7 @@ resource "helm_release" "karpenter" {
   repository = "oci://public.ecr.aws/karpenter"
   chart      = "karpenter"
   namespace  = "kube-system"
-  version    = "1.8.5"
+  version    = "1.14.1"
 
   set = [{
     name  = "settings.clusterName"

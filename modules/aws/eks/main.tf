@@ -1,6 +1,6 @@
 module "eks_kms_key" {
   source  = "terraform-aws-modules/kms/aws"
-  version = "~> 4.1.0"
+  version = "~> 4.2.0"
 
   description             = "KMS Key for EKS Secrets encryption"
   aliases                 = ["${var.cluster_name}-secrets-encryption-key"]
@@ -11,7 +11,7 @@ module "eks_kms_key" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 21.15.1"
+  version = "~> 21.25.0"
 
   name               = var.cluster_name
   kubernetes_version = var.k8s_version
