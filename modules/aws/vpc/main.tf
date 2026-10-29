@@ -1,6 +1,6 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 6.6.0"
+  version = "~> 6.7.0"
 
   name = var.name
   cidr = var.cidr_block
@@ -45,7 +45,7 @@ module "vpc_flow_logs_bucket" {
 
 module "vpc_flow_logs" {
   source  = "terraform-aws-modules/vpc/aws//modules/flow-log"
-  version = "~> 6.5.0"
+  version = "~> 6.7.0"
 
   name   = "${module.vpc.name}-flow-logs"
   vpc_id = module.vpc.vpc_id
@@ -58,7 +58,7 @@ module "vpc_flow_logs" {
 
 module "vpc_endpoints" {
   source  = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
-  version = "~> 6.5.0"
+  version = "~> 6.7.0"
 
   vpc_id = module.vpc.vpc_id
 
